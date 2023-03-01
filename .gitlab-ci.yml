@@ -1,0 +1,109 @@
+image: gitlab/dind
+services:
+  - docker:dind
+include:
+  - template: Security/Secret-Detection.gitlab-ci.yml
+stages:
+  - secret_detection
+  - build_deploy_dev
+  - build_deploy_test
+  - build_deploy_staging
+  - build_deploy_prod
+  - build_deploy_node
+  - build_deploy_demo
+secret_detection:
+  stage: secret_detection
+  variables:
+    SECRET_DETECTION_HISTORIC_SCAN: "true"
+
+build_deploy_dev:
+  stage: build_deploy_dev
+  script:
+    - echo "Container Registry URI - $CI_REGISTRY_IMAGE"
+    - echo "Building the image...DEV"
+    - docker build -t $CI_REGISTRY_IMAGE:dev .
+    - echo "Image built."
+    - docker login registry.gitlab.com -u $container_registry_user -p $container_registry_token
+    - echo "Logged into Gitlab registry."
+    - docker push $CI_REGISTRY_IMAGE:dev
+    - echo "Container pushed to registry."
+  only:
+    - dev
+
+build_deploy_test:
+  stage: build_deploy_test
+  script:
+    - echo "Container Registry URI - $CI_REGISTRY_IMAGE"
+    - echo "Building the image...TEST"
+    - docker build -t $CI_REGISTRY_IMAGE:test .
+    - echo "Image built."
+    - docker login registry.gitlab.com -u $container_registry_user -p $container_registry_token
+    - echo "Logged into Gitlab registry."
+    - docker push $CI_REGISTRY_IMAGE:test
+    - echo "Container pushed to registry."
+  only:
+    - test
+
+build_deploy_staging:
+  stage: build_deploy_staging
+  script:
+    - echo "Container Registry URI - $CI_REGISTRY_IMAGE"
+    - echo "Building the image...STAGING"
+    - docker build -t $CI_REGISTRY_IMAGE:staging .
+    - echo "Image built."
+    - docker login registry.gitlab.com -u $container_registry_user -p $container_registry_token
+    - echo "Logged into Gitlab registry."
+    - docker push $CI_REGISTRY_IMAGE:staging
+    - echo "Container pushed to registry."
+    - echo "Deploying application..."
+    - curl -X POST https://\$$azure_webhook_staging -d -H
+    - echo "Application successfully deployed."
+  only:
+    - staging
+
+build_deploy_prod:
+  stage: build_deploy_prod
+  script:
+    - echo "Container Registry URI - $CI_REGISTRY_IMAGE"
+    - echo "Building the image...PROD"
+    - docker build -t $CI_REGISTRY_IMAGE:prod .
+    - echo "Image built."
+    - docker login registry.gitlab.com -u $container_registry_user -p $container_registry_token
+    - echo "Logged into Gitlab registry."
+    - docker push $CI_REGISTRY_IMAGE:prod
+    - echo "Container pushed to registry."
+  only:
+    - prod
+
+build_deploy_node:
+  stage: build_deploy_node
+  script:
+    - echo "Container Registry URI - $CI_REGISTRY_IMAGE"
+    - echo "Building the image...NODE"
+    - docker build -t $CI_REGISTRY_IMAGE:node .
+    - echo "Image built."
+    - docker login registry.gitlab.com -u $container_registry_user -p $container_registry_token
+    - echo "Logged into Gitlab registry."
+    - docker push $CI_REGISTRY_IMAGE:node
+    - echo "Container pushed to registry."
+  only:
+    - node
+
+build_deploy_demo:
+  stage: build_deploy_demo
+  script:
+    - echo "Container Registry URI - $CI_REGISTRY_IMAGE"
+    - echo "Building the image...DEMO"
+    - docker build -t $CI_REGISTRY_IMAGE:demo .
+    - echo "Image built."
+    - docker login registry.gitlab.com -u $container_registry_user -p $container_registry_token
+    - echo "Logged into Gitlab registry."
+    - docker push $CI_REGISTRY_IMAGE:demo
+    - echo "Container pushed to registry."
+    - echo "Deploying application..."
+    - curl -X POST https://\$$azure_webhook_demo -d -H
+    - echo "Application successfully deployed."
+  only:
+    - demo
+
+
