@@ -9,16 +9,15 @@
 
 <!----------------------------- BODY START ----------------------------->
 
-
  {% extends "template.html" %}
   {% block content %}
 
 <center><h2 class="mb-3">Monitor Queue</h2>
-    <h2 class="mb-3">Latest 20 Triggers</h2> </center><hr/>
+    <h2 class="mb-3">Latest 50 Triggers</h2> </center><hr/>
       <center><div class="table-responsive">
         <table class="table">
           <table class="table">
-  <caption>End of 20 trigger queue</caption>
+  <caption>End of 50 trigger queue</caption>
   <thead>
       <th scope="col">Id</th>
       <th scope="col">Job Id</th>
@@ -27,7 +26,7 @@
       <th scope="col">Trigger Time</th>
   </thead>
 
-{% for row in top20 %}
+{% for row in top50 %}
     <tr>
         <td>{{row["id"]}}</td>
         <td>{{row["job_id"]}}</td>
@@ -36,12 +35,9 @@
         <td>{{row["trigger_time"]}}</td>
     </tr>
 {% endfor %}
+</table></div></center>
+{% endblock %}
 
-          </table></div></center>
-
- {% endblock %}
-
-
-<!----------------------------- BODY END ----------------------------->
+ <!----------------------------- BODY END ----------------------------->
 
 </html>
