@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/html"><head>
+    <meta charset="utf-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+<!----------------------------- BODY START ----------------------------->
+
+
+ {% extends "template.html" %}
+  {% block content %}
+
+<center><h2 class="mb-3">Monitor Queue</h2>
+    <h2 class="mb-3">Last 24 hours</h2> </center><hr/>
+      <center><div class="table-responsive">
+        <table class="table">
+          <table class="table">
+  <caption>End of last 24 hours trigger </caption>
+  <thead>
+      <th scope="col">Id</th>
+      <th scope="col">Job Id</th>
+      <th scope="col">Event Trigger</th>
+      <th scope="col">Event Description</th>
+      <th scope="col">Trigger Time</th>
+  </thead>
+
+{% for row in hours24 %}
+    <tr>
+        <td>{{row["id"]}}</td>
+        <td>{{row["job_id"]}}</td>
+        <td>{{row["event_trigger"]}}</td>
+        <td>{{row["event_description"]}}</td>
+        <td>{{row["trigger_time"]}}</td>
+    </tr>
+{% endfor %}
+
+          </table></div></center>
+
+ {% endblock %}
+
+
+<!----------------------------- BODY END ----------------------------->
+
+</html>
