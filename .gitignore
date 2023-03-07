@@ -4,6 +4,6 @@
 **/__pycache__
 .idea
 /venv
-*.py [variable]
+**/.py [variable]
 *.py [controller]
 *.py [data]
