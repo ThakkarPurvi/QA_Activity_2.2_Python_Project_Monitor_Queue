@@ -57,7 +57,6 @@ def getjob():
 
 @app.route("/hours24")
 def hours24():
-    id_ = request.form.get("hours_24")
     cursor.execute('SELECT  * FROM dbo.logs2 WHERE trigger_time >= DATEADD(day, -1, GETDATE()) ORDER BY trigger_time DESC').fetchone()
     row = cursor.fetchall()
     return render_template(f'hours24.html', hours24=row)
@@ -65,7 +64,6 @@ def hours24():
 
 @app.route("/lastweek")
 def lastweek():
-    id_ = request.form.get("last_week")
     cursor.execute('SELECT  * FROM dbo.logs2 WHERE trigger_time > (SELECT DATEADD(WEEK, -1, GETDATE())) ORDER BY trigger_time DESC').fetchone()
     row = cursor.fetchall()
     return render_template(f'lastweek.html', lastweek=row)
