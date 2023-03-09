@@ -12,10 +12,67 @@
 
  {% extends "template.html" %}
   {% block content %}
+<center>
+<h2 class="mb-3">Monitor Queue</h2>
+   <hr/>
 
-<center><h2 class="mb-3">Monitor Queue</h2>
-    <h2 class="mb-3">Trigger using job id number 23</h2> </center><hr/>
-      <center><div class="table-responsive">
+<!----------------------------- FORM IN BODY ----------------------------->
+      <form method="POST" action="/jobid">
+      <label for="jobIdEntry"><h3 class="mb-3">Enter Job ID:
+      <input id="jobIdEntry" type="number" name="job_id">
+{#          <input id="lastweek" type="number" name="last_week">#}
+{#          <input id="hours24" type="number" name="hours_24">#}
+      <button class="btn btn-primary" type="submit">Load</button></h3></label>
+      </form>
+
+      <form method="POST" action="/jobid">
+      <label for="jobIdEntry"><h3 class="mb-3">Select your search criteria:
+          <select name = "dropdown">
+          <option value = "jobid" href="jobid.html">Using Job ID</option>
+            <option value = "lastweek" href="lastweek.html">Last Week</option>
+            <option value = "hours24" href="hours24.html">24 Hours</option></select>
+{#          <input id="jobIdEntry" type="number" name="job_id">#}
+{#          <input id="Last Week" type="number" name="job_id">#}
+{#          <input id="24 Hours" type="number" name="job_id">#}
+
+      <div id="id" style="background-color: white; display: none;></div>
+      href="/jobid.html"</h1>
+      </div>
+
+      <div id="lw" style="background-color: white; display: none;></div>
+        <h1>"/lastweek.html"</h1>
+        </div>
+
+      <div id="24" style="background-color: white; display: none;></div>
+        href="hours24.html"
+        </div>
+
+      <script>
+      function showMe(value) {
+          if (value=="jobid") {
+              document.getElementById('id').style.display = "block";
+              document.getElementById('lw').style.display = "none";
+              document.getElementById('24').style.display = "none";
+          }
+          if (value=="lastweek") {
+              document.getElementById('id').style.display="none";
+              document.getElementById('lw').style.display="block";
+              document.getElementById('24').style.display="none";
+          }
+          if (value=="hours24") {
+              document.getElementById('id').style.display="none";
+              document.getElementById('lw').style.display="none";
+              document.getElementById('24').style.display="block";
+          }
+      }
+      </script>
+      <button class="btn btn-primary" type="submit">Load</button></h3></label>
+
+
+      <!----------------------------- FORM COMPLETE ----------------------------->
+
+
+      <div class="table-responsive">
         <table class="table">
           <table class="table">
   <caption>End of job id trigger </caption>
@@ -37,7 +94,7 @@
     </tr>
 {% endfor %}
 
-          </table></div></center>
+          </table></div>
 
  {% endblock %}
 

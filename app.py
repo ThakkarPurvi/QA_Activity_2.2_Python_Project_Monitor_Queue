@@ -1,5 +1,5 @@
 import logging
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from variable import cursor
 
 logging.basicConfig()
@@ -41,31 +41,40 @@ def top100():
     row = cursor.fetchall()
     return render_template(f'top100.html', top100=row)
 
-# @app.route("/jobid")
-# def jobid():
-#     cursor.execute('select * from dbo.logs2 where job_id=2').fetchone()
-#     row = cursor.fetchall()
-#     return render_template(f'jobid.html', jobid=row)
 
-@app.route("/jobid")
+@app.route("/jobid", methods=['GET'])
 def jobid():
-    cursor.execute('select * from dbo.logs2 where job_id=23').fetchone()
+    return render_template(f'jobid.html')
+
+
+@app.route("/jobid", methods=['POST'])
+def getjob():
+    id_ = request.form.get("job_id")
+    cursor.execute(f"select * from dbo.logs2 where job_id={id_} ORDER BY trigger_time DESC").fetchone()
     row = cursor.fetchall()
     return render_template(f'jobid.html', jobid=row)
 
+
 @app.route("/hours24")
 def hours24():
-    cursor.execute('SELECT  * FROM dbo.logs2 WHERE trigger_time >= DATEADD(day, -1, GETDATE())').fetchone()
+    id_ = request.form.get("hours_24")
+    cursor.execute('SELECT  * FROM dbo.logs2 WHERE trigger_time >= DATEADD(day, -1, GETDATE()) ORDER BY trigger_time DESC').fetchone()
     row = cursor.fetchall()
     return render_template(f'hours24.html', hours24=row)
 
+
 @app.route("/lastweek")
 def lastweek():
+    id_ = request.form.get("last_week")
     cursor.execute('SELECT  * FROM dbo.logs2 WHERE trigger_time > (SELECT DATEADD(WEEK, -1, GETDATE())) ORDER BY trigger_time DESC').fetchone()
     row = cursor.fetchall()
     return render_template(f'lastweek.html', lastweek=row)
 
 
+
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
 
