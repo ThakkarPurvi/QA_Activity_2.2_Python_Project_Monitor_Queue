@@ -1,8 +1,6 @@
 # Python Project using Flask and SQL 
 (S2R Analytics - QA  DevOps Apprenticeship Level 4.)
 
-![Github issues](https://img.shields.io/badge/DevOps%20Portfolio%20Project-Python-red)
-
 ![Windows 11](https://img.shields.io/badge/Windows%2011-%230079d5.svg?style=for-the-badge&logo=Windows%2011&logoColor=white)
 ![Edge](https://img.shields.io/badge/Edge-0078D7?style=for-the-badge&logo=Microsoft-edge&logoColor=white)
 ![Outlook](https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white)
@@ -17,6 +15,7 @@
 ![GitLab](https://img.shields.io/badge/gitlab-%23181717.svg?style=for-the-badge&logo=gitlab&logoColor=white).
 ![PyCharm](https://img.shields.io/badge/pycharm-143?style=for-the-badge&logo=pycharm&logoColor=black&color=black&labelColor=green)
 
+![Github issues](https://img.shields.io/badge/DevOps%20Portfolio%20Project-Python-red)
 ![S2RAnalytics](https://img.shields.io/badge/Project_By-QA-blue)
 ![QA](https://img.shields.io/badge/Project_For-S2RAnalytics-blue)
 ![Monitor_Queue](https://img.shields.io/badge/Monitor-Queue-red)
