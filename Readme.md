@@ -29,7 +29,7 @@
 - Show a list of logs with the ability to search for different criteria
 - Live view where it shows incomplete jobs
 
-#  🔗[Assessment criteria with evidence](https://gitlab.com/s2ranalytics/prototyping/monitor-queues/-/blob/dev/Asssessment%20Criteria/Assessment%20Criteria%20-%202.2%20-%20Coding%20Fundamentals%20-%20Project.pdf)
+#  🔗[Assessment criteria with evidence](https://github.com/ThakkarPurvi/QA_Activity_2.2_Python_Project_Monitor_Queue/blob/dev/asssessment%20criteria/Assessment_Criteria_2.2_Coding_Fundamentals_Project.pdf)
 
 ## Program
 
