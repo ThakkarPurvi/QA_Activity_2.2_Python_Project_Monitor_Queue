@@ -58,8 +58,8 @@ def jobid():
 def getjob():
     """ Job id function using POST method"""
     id_ = request.form.get("job_id")
-    cursor.execute(f"select * from dbo.logs2 "
-                   f"where job_id={id_} ORDER BY trigger_time DESC").fetchone()
+    cursor.execute('select * from dbo.logs2 '
+                   f'where job_id={id_} ORDER BY trigger_time DESC').fetchone()
     row = cursor.fetchall()
     return render_template('jobid.html', jobid=row)
 
